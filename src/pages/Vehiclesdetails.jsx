@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from 'react';
 
 const Vehicles  = () => {
-    
+    const [vehicles,setVehicles] = useState();
     const {userid} =useParams();
     return (
         <>

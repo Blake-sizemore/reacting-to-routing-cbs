@@ -5,30 +5,30 @@ const People = () => {
     const [people, setPeople] = useState([]);
 
     useEffect(() => {
-        fetch('http://api-ghibli.herokuapp.com/people') 
+        fetch('http://api-ghibli.herokuapp.com/people')
             .then(response => response.json())
             .then(data => setPeople(data))
             .catch(e => alert(e.message))
     }, []);
 
     return (
-        <div className='justify-content-center'>
-            <h1>People Page</h1>
-            <div className='col-md-6'>
-                <ul className='list-group'>
-                    {people.map(person => (
-                        <li
-                            id={person.id}
-                            className="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{person.name}</span>
-                            <Link to={`/Portfoliodetails/${person.id}`} className='btn btn-outline-warning'>
-                                Full Details
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+        <>
+            <h1 className="text-center mt-2">The Characters in the films</h1>
+            <div className='row row-cols-sm-1 row-cols-md-2 row-cols-lg-3'>
+                {people.map(person => (
+                    <div key={person.id}>
+                        <div className='card shadow my-2 p-0 text-center'>
+                            <div className='card-body row row-cols-2 m-2'>
+                                <h5 className='border-dark fw-semibold'>{person.name}</h5 >
+                                <Link to={`/Peopledetails/${person.id}`} className='btn btn-outline-secondary'>
+                                    Full Details
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>
+        </>
     )
 }
 
